@@ -33,7 +33,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function getDcaTable()
+    public function getDcaTable(PickerConfig $config = null): string
     {
         return 'tl_news_category';
     }
@@ -41,7 +41,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function getDcaAttributes(PickerConfig $config)
+    public function getDcaAttributes(PickerConfig $config): array
     {
         $attributes = ['fieldType' => 'checkbox'];
 
@@ -63,7 +63,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function getUrl(PickerConfig $config)
+    public function getUrl(PickerConfig $config): string|null
     {
         // Set the news categories root in session for further reference in onload_callback (see #137)
         if (\is_array($rootNodes = $config->getExtra('rootNodes'))) {
@@ -78,7 +78,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function convertDcaValue(PickerConfig $config, $value)
+    public function convertDcaValue(PickerConfig $config, mixed $value): int|string
     {
         return (int) $value;
     }
@@ -86,7 +86,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'newsCategoriesPicker';
     }
@@ -94,7 +94,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function supportsContext($context)
+    public function supportsContext(string $context): bool
     {
         if ($this->permissionChecker === null) {
             return false;
@@ -106,7 +106,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    public function supportsValue(PickerConfig $config)
+    public function supportsValue(PickerConfig $config): bool
     {
         foreach (\explode(',', $config->getValue()) as $id) {
             if (!\is_numeric($id)) {
@@ -120,7 +120,7 @@ class NewsCategoriesPickerProvider extends AbstractPickerProvider implements Dca
     /**
      * {@inheritdoc}
      */
-    protected function getRouteParameters(PickerConfig $config = null)
+    protected function getRouteParameters(PickerConfig $config = null): array
     {
         return ['do' => 'news', 'table' => 'tl_news_category'];
     }
