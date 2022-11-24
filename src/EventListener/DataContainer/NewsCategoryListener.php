@@ -22,6 +22,7 @@ use Contao\DataContainer;
 use Contao\Image;
 use Contao\Input;
 use Contao\StringUtil;
+use Contao\System;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Terminal42\DcMultilingualBundle\Driver;
@@ -55,13 +56,12 @@ class NewsCategoryListener implements FrameworkAwareInterface
      *
      * @param Connection        $db
      * @param PermissionChecker $permissionChecker
-     * @param SessionInterface  $session
      */
-    public function __construct(Connection $db, PermissionChecker $permissionChecker, SessionInterface $session, Slug $slug = null)
+    public function __construct(Connection $db, PermissionChecker $permissionChecker, Slug $slug = null)
     {
         $this->db = $db;
         $this->permissionChecker = $permissionChecker;
-        $this->session = $session;
+        $this->session = System::getContainer()->get('session');
         $this->slug = $slug;
     }
 

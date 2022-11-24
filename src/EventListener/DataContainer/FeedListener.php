@@ -15,6 +15,7 @@ use Contao\Automator;
 use Contao\CoreBundle\Framework\FrameworkAwareInterface;
 use Contao\CoreBundle\Framework\FrameworkAwareTrait;
 use Contao\DataContainer;
+use Contao\System;
 use Doctrine\DBAL\Connection;
 use Haste\Model\Model;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -37,12 +38,11 @@ class FeedListener implements FrameworkAwareInterface
      * FeedListener constructor.
      *
      * @param Connection       $db
-     * @param SessionInterface $session
      */
-    public function __construct(Connection $db, SessionInterface $session)
+    public function __construct(Connection $db)
     {
         $this->db = $db;
-        $this->session = $session;
+        $this->session = System::getContainer()->get('session');
     }
 
     /**
