@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": "^5.6|^7.0|^8.0",
-        "contao/core-bundle": "^4.4 | ^5.0",
+        "php": "^8.0",
+        "contao/core-bundle": "^5.0",
         "codefog/contao-haste": "^4.17 | ^5.0",
         "contao/news-bundle": "^4.4 | ^5.0",
         "doctrine/dbal": "^2.11 || ^3"
@@ -20,16 +20,13 @@
     "require-dev": {
         "contao/manager-plugin": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.2",
-        "terminal42/contao-changelanguage": "^3.1",
-        "terminal42/dc_multilingual": "^4.0"
+        "terminal42/contao-changelanguage": "dev-haste-5"
     },
     "suggest": {
-        "terminal42/contao-changelanguage": "^3.1",
-        "terminal42/dc_multilingual": "^4.0"
+        "terminal42/contao-changelanguage": "dev-haste-5"
     },
     "conflict": {
-        "contao/manager-plugin": "<2.0 || >=3.0",
-        "terminal42/dc_multilingual": "<4.0"
+        "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "autoload": {
         "psr-4": {
@@ -41,5 +38,12 @@
     },
     "replace": {
         "contao-legacy/news_categories": "self.version"
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "contao-community-alliance/composer-plugin": true,
+            "contao/manager-plugin": true
+        }
     }
 }
